@@ -1,0 +1,43 @@
+{
+  "locations": [
+    {
+      "id": "DEPOT",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "A",
+      "x": 2,
+      "y": 3
+    },
+    {
+      "id": "B",
+      "x": 5,
+      "y": 4
+    },
+    {
+      "id": "C",
+      "x": 6,
+      "y": 1
+    }
+  ],
+  "deliveries": [
+    {
+      "id": "D1",
+      "location_id": "A",
+      "demand": 20
+    },
+    {
+      "id": "D2",
+      "location_id": "B",
+      "demand": 30
+    },
+    {
+      "id": "D3",
+      "location_id": "C",
+      "demand": 15
+    }
+  ],
+  "vehicle_capacity": 100,
+  "depot_id": "DEPOT"
+}

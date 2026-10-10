@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>QuantumRoute | Routes</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/routes-features.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+</head>
+
+
+<body>
+
+<main class="routes-page">
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ⚛
+            </div>
+
+            <div class="brand-text">
+                QuantumRoute
+            </div>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="../index.html">
+                Home
+            </a>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a
+                href="routes.html"
+                class="active"
+            >
+                Routes
+            </a>
+
+            <a href="results.html">
+                Results
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="routes-hero">
+
+        <div class="hero-content">
+
+            <div class="page-label">
+                QUANTUM ROUTE NETWORK
+            </div>
+
+            <h1>
+                Optimized Vehicle Routes
+            </h1>
+
+            <p>
+                Monitor your fleet, detect route incidents,
+                and receive intelligent alternate routes.
+            </p>
+
+        </div>
+
+
+        <div class="optimization-status">
+
+            <span class="status-dot"></span>
+
+            Network Optimized
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ROUTE SUMMARY
+    ====================================================== -->
+
+    <section class="route-summary">
+
+        <div class="route-stat-card">
+
+            <div class="route-stat-icon">
+                🚚
+            </div>
+
+            <div>
+
+                <span>
+                    Active Vehicles
+                </span>
+
+                <strong>
+                    4
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="route-stat-card">
+
+            <div class="route-stat-icon">
+                📍
+            </div>
+
+            <div>
+
+                <span>
+                    Delivery Points
+                </span>
+
+                <strong>
+                    5
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="route-stat-card">
+
+            <div class="route-stat-icon">
+                🛣️
+            </div>
+
+            <div>
+
+                <span>
+                    Total Distance
+                </span>
+
+                <strong>
+                    137 km
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="route-stat-card">
+
+            <div class="route-stat-icon">
+                ⚛
+            </div>
+
+            <div>
+
+                <span>
+                    Optimization
+                </span>
+
+                <strong>
+                    Quantum
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         VEHICLE ROUTES
+    ====================================================== -->
+
+    <section class="routes-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="page-label">
+                    FLEET
+                </span>
+
+                <h2>
+                    Vehicle Routes
+                </h2>
+
+            </div>
+
+            <span class="optimized-badge">
+                ✓ Optimized
+            </span>
+
+        </div>
+
+
+
+        <!-- VEHICLE 01 -->
+
+        <div class="vehicle-route-card">
+
+            <div class="vehicle-header">
+
+                <div class="vehicle-title">
+
+                    <div class="vehicle-icon">
+                        🚚
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Vehicle 01
+                        </strong>
+
+                        <span>
+                            Capacity: 100 units
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-flow">
+
+                <div class="route-node warehouse-node">
+
+                    <div class="node-circle">
+                        🏭
+                    </div>
+
+                    <span>
+                        Warehouse
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node">
+
+                    <div class="node-circle">
+                        A
+                    </div>
+
+                    <span>
+                        Location A
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node">
+
+                    <div class="node-circle">
+                        B
+                    </div>
+
+                    <span>
+                        Location B
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node">
+
+                    <div class="node-circle">
+                        C
+                    </div>
+
+                    <span>
+                        Location C
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node warehouse-node">
+
+                    <div class="node-circle">
+                        🏭
+                    </div>
+
+                    <span>
+                        Warehouse
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-details">
+
+                <span>
+                    📏 36 km
+                </span>
+
+                <span>
+                    ⏱ 1h 05m
+                </span>
+
+                <span>
+                    ✓ Optimized
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- VEHICLE 02 -->
+
+        <div class="vehicle-route-card">
+
+            <div class="vehicle-header">
+
+                <div class="vehicle-title">
+
+                    <div class="vehicle-icon">
+                        🚚
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Vehicle 02
+                        </strong>
+
+                        <span>
+                            Capacity: 100 units
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-flow">
+
+                <div class="route-node warehouse-node">
+
+                    <div class="node-circle">
+                        🏭
+                    </div>
+
+                    <span>
+                        Warehouse
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node">
+
+                    <div class="node-circle">
+                        D
+                    </div>
+
+                    <span>
+                        Location D
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node">
+
+                    <div class="node-circle">
+                        E
+                    </div>
+
+                    <span>
+                        Location E
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node warehouse-node">
+
+                    <div class="node-circle">
+                        🏭
+                    </div>
+
+                    <span>
+                        Warehouse
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-details">
+
+                <span>
+                    📏 31 km
+                </span>
+
+                <span>
+                    ⏱ 58m
+                </span>
+
+                <span>
+                    ✓ Optimized
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- VEHICLE 03 -->
+
+        <div class="vehicle-route-card">
+
+            <div class="vehicle-header">
+
+                <div class="vehicle-title">
+
+                    <div class="vehicle-icon">
+                        🚚
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Vehicle 03
+                        </strong>
+
+                        <span>
+                            Capacity: 100 units
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-flow">
+
+                <div class="route-node warehouse-node">
+
+                    <div class="node-circle">
+                        🏭
+                    </div>
+
+                    <span>
+                        Warehouse
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node">
+
+                    <div class="node-circle">
+                        B
+                    </div>
+
+                    <span>
+                        Location B
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node">
+
+                    <div class="node-circle">
+                        D
+                    </div>
+
+                    <span>
+                        Location D
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node">
+
+                    <div class="node-circle">
+                        A
+                    </div>
+
+                    <span>
+                        Location A
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node warehouse-node">
+
+                    <div class="node-circle">
+                        🏭
+                    </div>
+
+                    <span>
+                        Warehouse
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-details">
+
+                <span>
+                    📏 41 km
+                </span>
+
+                <span>
+                    ⏱ 1h 21m
+                </span>
+
+                <span>
+                    ✓ Optimized
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- VEHICLE 04 -->
+
+        <div class="vehicle-route-card">
+
+            <div class="vehicle-header">
+
+                <div class="vehicle-title">
+
+                    <div class="vehicle-icon">
+                        🚚
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Vehicle 04
+                        </strong>
+
+                        <span>
+                            Capacity: 100 units
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-flow">
+
+                <div class="route-node warehouse-node">
+
+                    <div class="node-circle">
+                        🏭
+                    </div>
+
+                    <span>
+                        Warehouse
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node">
+
+                    <div class="node-circle">
+                        C
+                    </div>
+
+                    <span>
+                        Location C
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node">
+
+                    <div class="node-circle">
+                        E
+                    </div>
+
+                    <span>
+                        Location E
+                    </span>
+
+                </div>
+
+
+                <div class="route-line"></div>
+
+
+                <div class="route-node warehouse-node">
+
+                    <div class="node-circle">
+                        🏭
+                    </div>
+
+                    <span>
+                        Warehouse
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="route-details">
+
+                <span>
+                    📏 29 km
+                </span>
+
+                <span>
+                    ⏱ 52m
+                </span>
+
+                <span>
+                    ✓ Optimized
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         VOICE ASSISTANT
+    ====================================================== -->
+
+    <section class="routes-section voice-route-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="page-label">
+                    VOICE ASSISTANT
+                </span>
+
+                <h2>
+                    Route Incident Assistant
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <p>
+            Voice alerts automatically respond to
+            high traffic, road blocks, and vehicle breakdowns.
+        </p>
+
+
+        <p id="voiceStatus">
+            🎙 Voice Assistant Ready
+        </p>
+
+
+        <p class="voice-language-display">
+
+            🌐 Language:
+
+            <strong id="currentLanguage">
+                Not selected
+            </strong>
+
+        </p>
+
+
+        <div class="voice-buttons">
+
+            <button
+                type="button"
+                class="secondary-button"
+                onclick="changeVoiceLanguage()"
+            >
+                ⚙️ Change Language
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ROUTE ALERTS
+    ====================================================== -->
+
+    <section class="routes-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="page-label">
+                    LIVE MONITORING
+                </span>
+
+                <h2>
+                    Route Alerts
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <p>
+            Simulate a route incident to see how
+            QuantumRoute automatically selects an alternate route.
+        </p>
+
+
+        <div class="voice-buttons">
+
+            <button
+                type="button"
+                class="primary-button"
+                onclick="demoTraffic()"
+            >
+                🚦 High Traffic
+            </button>
+
+
+            <button
+                type="button"
+                class="primary-button"
+                onclick="demoRoadBlock()"
+            >
+                🚧 Road Block
+            </button>
+
+
+            <button
+                type="button"
+                class="primary-button"
+                onclick="demoBreakdown()"
+            >
+                🚨 Vehicle Breakdown
+            </button>
+
+
+            <button
+                type="button"
+                class="secondary-button"
+                onclick="clearWarnings()"
+            >
+                ✓ Clear Warnings
+            </button>
+
+        </div>
+
+
+        <div
+            id="incidentList"
+            class="incident-list"
+        >
+
+            <div class="incident-item">
+
+                <div class="incident-title">
+                    No active warnings
+                </div>
+
+                <div class="incident-description">
+
+                    All monitored routes
+                    are currently clear.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INTERACTIVE MAP
+    ====================================================== -->
+
+    <section class="routes-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="page-label">
+                    LIVE MAP
+                </span>
+
+                <h2>
+                    Interactive Route Map
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="routeMap"
+            class="route-map"
+        ></div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         LANGUAGE MODAL
+    ====================================================== -->
+
+    <div
+        id="languageModal"
+        class="language-modal hidden"
+    >
+
+        <div class="language-modal-box">
+
+            <div class="language-modal-icon">
+                🎙️
+            </div>
+
+
+            <h2>
+                Welcome to QuantumRoute
+            </h2>
+
+
+            <p>
+                Choose your preferred voice language.
+            </p>
+
+
+            <p class="language-subtext">
+                This language will be used for
+                route incident alerts.
+            </p>
+
+
+            <div class="language-options">
+
+                <button
+                    type="button"
+                    onclick="selectVoiceLanguage('en-IN')"
+                >
+                    🇬🇧 English
+                </button>
+
+
+                <button
+                    type="button"
+                    onclick="selectVoiceLanguage('te-IN')"
+                >
+                    🇮🇳 తెలుగు
+                </button>
+
+
+                <button
+                    type="button"
+                    onclick="selectVoiceLanguage('hi-IN')"
+                >
+                    🇮🇳 हिन्दी
+                </button>
+
+
+                <button
+                    type="button"
+                    onclick="selectVoiceLanguage('ta-IN')"
+                >
+                    🇮🇳 தமிழ்
+                </button>
+
+
+                <button
+                    type="button"
+                    onclick="selectVoiceLanguage('kn-IN')"
+                >
+                    🇮🇳 ಕನ್ನಡ
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 QuantumRoute · VNQFF-08
+        </p>
+
+        <p>
+            Quantum-Enhanced Last-Mile Route Optimisation
+        </p>
+
+    </footer>
+
+
+</main>
+
+
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+></script>
+
+
+<script
+    src="../js/routes.js"
+></script>
+
+
+</body>
+
+</html>

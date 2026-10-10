@@ -1,0 +1,30 @@
+[
+    {
+        "id": "DEPOT",
+        "name": "Central Warehouse",
+        "x": 0,
+        "y": 0,
+        "type": "warehouse"
+    },
+    {
+        "id": "A",
+        "name": "Delivery Point A",
+        "x": 2,
+        "y": 3,
+        "type": "customer"
+    },
+    {
+        "id": "B",
+        "name": "Delivery Point B",
+        "x": 5,
+        "y": 4,
+        "type": "customer"
+    },
+    {
+        "id": "C",
+        "name": "Delivery Point C",
+        "x": 6,
+        "y": 1,
+        "type": "customer"
+    }
+]

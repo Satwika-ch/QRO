@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuantumRoute | Quantum-Enhanced Route Optimisation</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+    <div class="brand">
+        <div class="brand-logo">⚛</div>
+        <div>
+            <h1>QuantumRoute</h1>
+            <span>Quantum-Enhanced Route Optimisation</span>
+        </div>
+    </div>
+
+    <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="pages/dashboard.html">Dashboard</a>
+        <a href="pages/routes.html">Routes</a>
+        <a href="pages/results.html">Results</a>
+    </nav>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="problem-badge">VNQFF-08</div>
+
+        <h2>
+            Smarter Routes.
+            <span>Quantum Intelligence.</span>
+        </h2>
+
+        <p>
+            QuantumRoute uses a hybrid classical and quantum-inspired
+            optimisation approach to find efficient last-mile delivery
+            routes while considering distance, capacity and delivery
+            constraints.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#optimizer" class="btn primary-btn">
+                Start Optimisation
+            </a>
+
+            <a href="pages/dashboard.html" class="btn secondary-btn">
+                View Dashboard
+            </a>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="route-orbit">
+            <div class="orbit-center">⚛</div>
+
+            <div class="orbit-icon truck">
+                <img src="assets/icons/truck.svg" alt="Vehicle">
+            </div>
+
+            <div class="orbit-icon location">
+                <img src="assets/icons/location.svg" alt="Location">
+            </div>
+
+            <div class="orbit-icon warehouse">
+                <img src="assets/icons/warehouse.svg" alt="Warehouse">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+    <div class="section-title">
+        <span>CORE CAPABILITIES</span>
+        <h2>Intelligent Route Optimisation</h2>
+        <p>Designed for modern logistics and last-mile delivery.</p>
+    </div>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <img src="assets/icons/truck.svg" alt="Vehicle">
+            </div>
+            <h3>Fleet Management</h3>
+            <p>
+                Manage vehicles and their capacity constraints
+                for efficient delivery planning.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <img src="assets/icons/location.svg" alt="Location">
+            </div>
+            <h3>Multiple Destinations</h3>
+            <p>
+                Optimise routes across multiple delivery locations
+                from a central depot.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <img src="assets/icons/warehouse.svg" alt="Warehouse">
+            </div>
+            <h3>Hybrid Optimisation</h3>
+            <p>
+                Compare classical optimisation with
+                QAOA-based quantum simulation.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= OPTIMIZER ================= -->
+
+<section class="optimizer-section" id="optimizer">
+
+    <div class="section-title">
+        <span>ROUTE OPTIMISER</span>
+        <h2>Run QuantumRoute</h2>
+        <p>Enter delivery locations and vehicle capacity.</p>
+    </div>
+
+    <div class="optimizer-card">
+
+        <div class="form-header">
+            <div>
+                <h3>Route Configuration</h3>
+                <p>Configure your delivery problem.</p>
+            </div>
+
+            <div class="status-badge" id="backendStatus">
+                Checking backend...
+            </div>
+        </div>
+
+        <!-- VEHICLE -->
+
+        <div class="form-section">
+            <h4>Vehicle</h4>
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label for="vehicleId">Vehicle ID</label>
+                    <input
+                        type="text"
+                        id="vehicleId"
+                        value="V1"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="capacity">Vehicle Capacity</label>
+                    <input
+                        type="number"
+                        id="capacity"
+                        value="100"
+                        min="1"
+                        step="any"
+                        required
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- DELIVERY LOCATIONS -->
+
+        <div class="form-section">
+            <div class="section-heading-row">
+                <div>
+                    <h4>Delivery Locations</h4>
+                    <p class="form-help-text">
+                        Add only the locations where actual deliveries are required.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="small-btn"
+                    id="addLocationBtn"
+                    onclick="window.addLocation()"
+                >
+                    + Add Delivery
+                </button>
+            </div>
+
+            <div id="locationsContainer">
+
+                <!-- DELIVERY 01 -->
+
+                <div class="location-row">
+                    <input
+                        class="location-id"
+                        type="text"
+                        value="D001"
+                        placeholder="Delivery ID"
+                        aria-label="Delivery ID 1"
+                        required
+                    >
+
+                    <input
+                        class="location-country"
+                        type="text"
+                        placeholder="Country"
+                        aria-label="Country for delivery 1"
+                        required
+                    >
+
+                    <input
+                        class="location-state"
+                        type="text"
+                        placeholder="State"
+                        aria-label="State for delivery 1"
+                        required
+                    >
+
+                    <input
+                        class="location-city"
+                        type="text"
+                        placeholder="City"
+                        aria-label="City for delivery 1"
+                        required
+                    >
+
+                    <input
+                        class="location-demand"
+                        type="number"
+                        min="0"
+                        step="any"
+                        placeholder="Demand"
+                        aria-label="Demand for delivery 1"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="delete-btn remove-location"
+                        onclick="window.removeLocation(this)"
+                        aria-label="Remove delivery D001"
+                        title="Remove delivery"
+                    >×</button>
+                </div>
+
+                <!-- DELIVERY 02 -->
+
+                <div class="location-row">
+                    <input
+                        class="location-id"
+                        type="text"
+                        value="D002"
+                        placeholder="Delivery ID"
+                        aria-label="Delivery ID 2"
+                        required
+                    >
+
+                    <input
+                        class="location-country"
+                        type="text"
+                        placeholder="Country"
+                        aria-label="Country for delivery 2"
+                        required
+                    >
+
+                    <input
+                        class="location-state"
+                        type="text"
+                        placeholder="State"
+                        aria-label="State for delivery 2"
+                        required
+                    >
+
+                    <input
+                        class="location-city"
+                        type="text"
+                        placeholder="City"
+                        aria-label="City for delivery 2"
+                        required
+                    >
+
+                    <input
+                        class="location-demand"
+                        type="number"
+                        min="0"
+                        step="any"
+                        placeholder="Demand"
+                        aria-label="Demand for delivery 2"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="delete-btn remove-location"
+                        onclick="window.removeLocation(this)"
+                        aria-label="Remove delivery D002"
+                        title="Remove delivery"
+                    >×</button>
+                </div>
+
+                <!-- DELIVERY 03 -->
+
+                <div class="location-row">
+                    <input
+                        class="location-id"
+                        type="text"
+                        value="D003"
+                        placeholder="Delivery ID"
+                        aria-label="Delivery ID 3"
+                        required
+                    >
+
+                    <input
+                        class="location-country"
+                        type="text"
+                        placeholder="Country"
+                        aria-label="Country for delivery 3"
+                        required
+                    >
+
+                    <input
+                        class="location-state"
+                        type="text"
+                        placeholder="State"
+                        aria-label="State for delivery 3"
+                        required
+                    >
+
+                    <input
+                        class="location-city"
+                        type="text"
+                        placeholder="City"
+                        aria-label="City for delivery 3"
+                        required
+                    >
+
+                    <input
+                        class="location-demand"
+                        type="number"
+                        min="0"
+                        step="any"
+                        placeholder="Demand"
+                        aria-label="Demand for delivery 3"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="delete-btn remove-location"
+                        onclick="window.removeLocation(this)"
+                        aria-label="Remove delivery D003"
+                        title="Remove delivery"
+                    >×</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- DEPOT -->
+
+        <div class="form-section">
+            <h4>Depot</h4>
+
+            <div class="depot-box">
+                <div class="depot-icon">
+                    <img
+                        src="assets/icons/warehouse.svg"
+                        alt="Depot"
+                    >
+                </div>
+
+                <div>
+                    <strong>DEPOT</strong>
+                    <span>Starting point: Vijayawada, Andhra Pradesh</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- OPTIMIZE BUTTON -->
+
+        <button
+            type="button"
+            class="optimize-btn"
+            id="optimizeBtn"
+            onclick="window.optimizeRoute(event)"
+        >
+            <span id="buttonText">⚛ Optimise Route</span>
+            <span id="loadingSpinner" class="spinner hidden"></span>
+        </button>
+
+        <!-- ERROR MESSAGE -->
+
+        <div
+            id="errorMessage"
+            class="error-message hidden"
+            role="alert"
+            aria-live="polite"
+            hidden
+        ></div>
+
+        <!-- RESULTS -->
+
+        <div
+            id="resultContainer"
+            class="result-container hidden"
+            hidden
+        >
+
+            <div class="result-header">
+                <div>
+                    <span>OPTIMISATION COMPLETE</span>
+                    <h3>Route Results</h3>
+                </div>
+
+                <div class="success-icon">✓</div>
+            </div>
+
+            <div class="result-grid">
+
+                <div class="result-box">
+                    <span>Classical Distance</span>
+                    <strong id="classicalDistance">-</strong>
+                </div>
+
+                <div class="result-box quantum-box">
+                    <span>Quantum Distance</span>
+                    <strong id="quantumDistance">-</strong>
+                </div>
+
+                <div class="result-box">
+                    <span>Difference</span>
+                    <strong id="distanceDifference">-</strong>
+                </div>
+
+                <div class="result-box">
+                    <span>Total Demand</span>
+                    <strong id="totalDemand">-</strong>
+                </div>
+
+            </div>
+
+            <div class="route-result">
+                <h4>Classical Route</h4>
+                <div id="classicalRoute" class="route-path">-</div>
+            </div>
+
+            <div class="route-result">
+                <h4>Quantum Route</h4>
+                <div id="quantumRoute" class="route-path quantum-route">-</div>
+            </div>
+
+            <div class="quantum-info">
+
+                <div>
+                    <span>Quantum Method</span>
+                    <strong id="quantumMethod">-</strong>
+                </div>
+
+                <div>
+                    <span>Qubits</span>
+                    <strong id="qubits">-</strong>
+                </div>
+
+                <div>
+                    <span>Probability</span>
+                    <strong id="probability">-</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= IMPACT ================= -->
+
+<section class="impact-section">
+    <div class="section-title">
+        <span>EXPECTED IMPACT</span>
+        <h2>Optimising the Future of Logistics</h2>
+    </div>
+
+    <div class="impact-grid">
+
+        <div class="impact-card">
+            <strong>↓</strong>
+            <h3>Travel Distance</h3>
+            <p>Find shorter and more efficient routes.</p>
+        </div>
+
+        <div class="impact-card">
+            <strong>↓</strong>
+            <h3>Fuel Consumption</h3>
+            <p>Reduce unnecessary vehicle travel.</p>
+        </div>
+
+        <div class="impact-card">
+            <strong>↓</strong>
+            <h3>Delivery Time</h3>
+            <p>Improve last-mile delivery efficiency.</p>
+        </div>
+
+        <div class="impact-card">
+            <strong>↓</strong>
+            <h3>Fleet Costs</h3>
+            <p>Improve overall fleet utilisation.</p>
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+    <div>
+        <strong>⚛ QuantumRoute</strong>
+        <p>
+            VNQFF-08 · Quantum-Enhanced Last-Mile Route Optimisation
+        </p>
+    </div>
+
+    <span>Hybrid Classical + Quantum Approach</span>
+</footer>
+
+<!-- Keep this path unchanged -->
+<script src="js/app.js"></script>
+
+</body>
+</html>

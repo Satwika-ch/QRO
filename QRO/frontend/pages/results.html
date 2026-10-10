@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuantumRoute | Optimization Results</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="brand">
+
+        <div class="brand-logo">
+            ⚛
+        </div>
+
+        <div>
+            <h1>QuantumRoute</h1>
+            <span>Quantum-Enhanced Route Optimisation</span>
+        </div>
+
+    </div>
+
+    <nav>
+
+        <a href="../index.html">
+            Home
+        </a>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="routes.html">
+            Routes
+        </a>
+
+        <a href="results.html" class="active">
+            Results
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= RESULTS PAGE ================= -->
+
+<main class="results-page">
+
+    <!-- ================= HERO ================= -->
+
+    <section class="results-hero">
+
+        <div class="results-hero-content">
+
+            <span class="page-label">
+                OPTIMISATION RESULTS
+            </span>
+
+            <h2>
+                Optimization Results
+            </h2>
+
+            <p>
+                Compare classical and quantum-enhanced solutions.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPARISON ================= -->
+
+    <section class="results-section">
+
+        <div class="section-heading">
+
+            <h2>
+                Classical vs Quantum
+            </h2>
+
+            <p>
+                Performance comparison
+            </p>
+
+        </div>
+
+
+        <div class="comparison-grid">
+
+
+            <!-- CLASSICAL -->
+
+            <div class="comparison-card classical-card">
+
+                <div class="comparison-header">
+
+                    <div>
+
+                        <span class="comparison-label">
+                            Classical Optimization
+                        </span>
+
+                        <h3>
+                            Baseline
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="comparison-stats">
+
+                    <div class="comparison-stat">
+
+                        <span>
+                            Distance
+                        </span>
+
+                        <strong id="classicalDistance">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="comparison-stat">
+
+                        <span>
+                            Time
+                        </span>
+
+                        <strong id="classicalTime">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="comparison-stat">
+
+                        <span>
+                            Fuel
+                        </span>
+
+                        <strong id="classicalFuel">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="comparison-stat">
+
+                        <span>
+                            Cost
+                        </span>
+
+                        <strong id="classicalCost">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUANTUM -->
+
+            <div class="comparison-card quantum-card">
+
+                <div class="comparison-header">
+
+                    <div>
+
+                        <span class="comparison-label">
+                            Quantum Optimization
+                        </span>
+
+                        <h3>
+                            QAOA
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="comparison-stats">
+
+                    <div class="comparison-stat">
+
+                        <span>
+                            Distance
+                        </span>
+
+                        <strong id="quantumDistance">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="comparison-stat">
+
+                        <span>
+                            Time
+                        </span>
+
+                        <strong id="quantumTime">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="comparison-stat">
+
+                        <span>
+                            Fuel
+                        </span>
+
+                        <strong id="quantumFuel">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="comparison-stat">
+
+                        <span>
+                            Cost
+                        </span>
+
+                        <strong id="quantumCost">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= GENERATED ROUTES ================= -->
+
+    <section class="results-section">
+
+        <div class="section-heading">
+
+            <h2>
+                Generated Routes
+            </h2>
+
+            <p>
+                Routes returned by the optimization engine.
+            </p>
+
+        </div>
+
+
+        <div class="generated-routes-grid">
+
+
+            <!-- CLASSICAL ROUTE -->
+
+            <div class="route-result-card">
+
+                <div class="route-card-header">
+
+                    <span>
+                        Classical Route
+                    </span>
+
+                </div>
+
+                <div
+                    class="route-path"
+                    id="classicalRoute"
+                >
+                    -
+                </div>
+
+                <div class="route-card-info">
+
+                    <div>
+
+                        <span>
+                            Total Demand
+                        </span>
+
+                        <strong id="totalDemand">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUANTUM ROUTE -->
+
+            <div class="route-result-card quantum-route-card">
+
+                <div class="route-card-header">
+
+                    <span>
+                        Quantum Route
+                    </span>
+
+                </div>
+
+                <div
+                    class="route-path quantum-route"
+                    id="quantumRoute"
+                >
+                    -
+                </div>
+
+                <div class="route-card-info">
+
+                    <div>
+
+                        <span>
+                            Qubits
+                        </span>
+
+                        <strong id="qubits">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Probability
+                        </span>
+
+                        <strong id="probability">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= IMPROVEMENT ================= -->
+
+    <section class="results-section improvement-section">
+
+        <div class="section-heading">
+
+            <h2>
+                Improvement
+            </h2>
+
+            <p>
+                Calculated from the current optimization result.
+            </p>
+
+        </div>
+
+
+        <div class="improvement-grid">
+
+
+            <!-- DISTANCE -->
+
+            <div class="improvement-card">
+
+                <div class="improvement-icon">
+                    📍
+                </div>
+
+                <div class="improvement-content">
+
+                    <span>
+                        Distance Reduction
+                    </span>
+
+                    <strong id="distanceImprovement">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- TIME -->
+
+            <div class="improvement-card">
+
+                <div class="improvement-icon">
+                    ⏱️
+                </div>
+
+                <div class="improvement-content">
+
+                    <span>
+                        Time Reduction
+                    </span>
+
+                    <strong id="timeImprovement">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- FUEL -->
+
+            <div class="improvement-card">
+
+                <div class="improvement-icon">
+                    ⛽
+                </div>
+
+                <div class="improvement-content">
+
+                    <span>
+                        Fuel Reduction
+                    </span>
+
+                    <strong id="fuelImprovement">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- COST -->
+
+            <div class="improvement-card">
+
+                <div class="improvement-icon">
+                    💰
+                </div>
+
+                <div class="improvement-content">
+
+                    <span>
+                        Cost Reduction
+                    </span>
+
+                    <strong id="costImprovement">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div>
+
+        <strong>
+            ⚛ QuantumRoute
+        </strong>
+
+        <p>
+            VNQFF-08 · Quantum-Enhanced Last-Mile Route Optimisation
+        </p>
+
+    </div>
+
+    <span>
+        Hybrid Classical + Quantum Approach
+    </span>
+
+</footer>
+
+
+<script>
+
+const savedResults =
+    localStorage.getItem("quantumRouteResults");
+
+
+if (savedResults) {
+
+    try {
+
+        const data =
+            JSON.parse(savedResults);
+
+
+        const classical =
+            data.classical || {};
+
+        const quantum =
+            data.quantum || {};
+
+
+        /* ================= DISTANCE ================= */
+
+        const classicalDistance =
+            Number(classical.distance || 0);
+
+        const quantumDistance =
+            Number(quantum.distance || 0);
+
+
+        document.getElementById(
+            "classicalDistance"
+        ).textContent =
+            classicalDistance
+                ? `${classicalDistance.toFixed(2)} km`
+                : "-";
+
+
+        document.getElementById(
+            "quantumDistance"
+        ).textContent =
+            quantumDistance
+                ? `${quantumDistance.toFixed(2)} km`
+                : "-";
+
+
+        /* ================= TIME ================= */
+
+        const classicalMinutes =
+            classicalDistance / 40 * 60;
+
+        const quantumMinutes =
+            quantumDistance / 40 * 60;
+
+
+        function formatTime(minutes) {
+
+            const hours =
+                Math.floor(minutes / 60);
+
+            const mins =
+                Math.round(minutes % 60);
+
+            return `${hours}h ${mins
+                .toString()
+                .padStart(2, "0")}m`;
+        }
+
+
+        document.getElementById(
+            "classicalTime"
+        ).textContent =
+            formatTime(classicalMinutes);
+
+
+        document.getElementById(
+            "quantumTime"
+        ).textContent =
+            formatTime(quantumMinutes);
+
+
+        /* ================= FUEL ================= */
+
+        const classicalFuel =
+            classicalDistance * 0.15;
+
+        const quantumFuel =
+            quantumDistance * 0.15;
+
+
+        document.getElementById(
+            "classicalFuel"
+        ).textContent =
+            `${classicalFuel.toFixed(2)} L`;
+
+
+        document.getElementById(
+            "quantumFuel"
+        ).textContent =
+            `${quantumFuel.toFixed(2)} L`;
+
+
+        /* ================= COST ================= */
+
+        const classicalCost =
+            Number(
+                classical.cost ||
+                classicalDistance * 12
+            );
+
+        const quantumCost =
+            Number(
+                quantum.cost ||
+                quantumDistance * 12
+            );
+
+
+        document.getElementById(
+            "classicalCost"
+        ).textContent =
+            `₹${Math.round(classicalCost)}`;
+
+
+        document.getElementById(
+            "quantumCost"
+        ).textContent =
+            `₹${Math.round(quantumCost)}`;
+
+
+        /* ================= ROUTES ================= */
+
+        document.getElementById(
+            "classicalRoute"
+        ).textContent =
+            Array.isArray(classical.route)
+                ? classical.route.join(" → ")
+                : "-";
+
+
+        document.getElementById(
+            "quantumRoute"
+        ).textContent =
+            Array.isArray(quantum.route)
+                ? quantum.route.join(" → ")
+                : "-";
+
+
+        /* ================= DEMAND ================= */
+
+        document.getElementById(
+            "totalDemand"
+        ).textContent =
+            classical.total_demand !== undefined
+                ? classical.total_demand
+                : "-";
+
+
+        /* ================= QUANTUM INFO ================= */
+
+        document.getElementById(
+            "qubits"
+        ).textContent =
+            quantum.qubits !== undefined
+                ? quantum.qubits
+                : "-";
+
+
+        document.getElementById(
+            "probability"
+        ).textContent =
+            quantum.probability !== undefined
+                ? quantum.probability
+                : "-";
+
+
+        /* ================= IMPROVEMENT ================= */
+
+        function calculateImprovement(
+            classicalValue,
+            quantumValue
+        ) {
+
+            if (
+                !classicalValue ||
+                classicalValue <= 0
+            ) {
+                return 0;
+            }
+
+            return (
+                (
+                    (classicalValue - quantumValue)
+                    / classicalValue
+                ) * 100
+            );
+        }
+
+
+        const distanceImprovement =
+            calculateImprovement(
+                classicalDistance,
+                quantumDistance
+            );
+
+
+        const timeImprovement =
+            calculateImprovement(
+                classicalMinutes,
+                quantumMinutes
+            );
+
+
+        const fuelImprovement =
+            calculateImprovement(
+                classicalFuel,
+                quantumFuel
+            );
+
+
+        const costImprovement =
+            calculateImprovement(
+                classicalCost,
+                quantumCost
+            );
+
+
+        document.getElementById(
+            "distanceImprovement"
+        ).textContent =
+            `${distanceImprovement.toFixed(1)}%`;
+
+
+        document.getElementById(
+            "timeImprovement"
+        ).textContent =
+            `${timeImprovement.toFixed(1)}%`;
+
+
+        document.getElementById(
+            "fuelImprovement"
+        ).textContent =
+            `${fuelImprovement.toFixed(1)}%`;
+
+
+        document.getElementById(
+            "costImprovement"
+        ).textContent =
+            `${costImprovement.toFixed(1)}%`;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Could not load optimization results:",
+            error
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

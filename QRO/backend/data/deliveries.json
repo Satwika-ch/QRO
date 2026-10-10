@@ -1,0 +1,26 @@
+[
+    {
+        "id": "D001",
+        "location_id": "A",
+        "customer": "Customer A",
+        "demand": 10,
+        "earliest": 0,
+        "latest": 100
+    },
+    {
+        "id": "D002",
+        "location_id": "B",
+        "customer": "Customer B",
+        "demand": 15,
+        "earliest": 0,
+        "latest": 100
+    },
+    {
+        "id": "D003",
+        "location_id": "C",
+        "customer": "Customer C",
+        "demand": 20,
+        "earliest": 0,
+        "latest": 100
+    }
+]

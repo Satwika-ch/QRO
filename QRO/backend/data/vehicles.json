@@ -1,0 +1,23 @@
+[
+    {
+        "id": "V001",
+        "name": "Delivery Van 1",
+        "capacity": 50,
+        "fuel_cost_per_km": 10,
+        "available": true
+    },
+    {
+        "id": "V002",
+        "name": "Delivery Van 2",
+        "capacity": 75,
+        "fuel_cost_per_km": 10,
+        "available": true
+    },
+    {
+        "id": "V003",
+        "name": "Delivery Truck 1",
+        "capacity": 100,
+        "fuel_cost_per_km": 12,
+        "available": true
+    }
+]

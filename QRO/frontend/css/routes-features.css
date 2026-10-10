@@ -1,0 +1,255 @@
+/* =====================================================
+   ROUTE SUMMARY - BOX FIX
+===================================================== */
+
+.route-summary {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 20px !important;
+    margin: 30px 0 !important;
+}
+
+.route-stat-card {
+    background: #ffffff !important;
+    border: 1px solid #e5d8f5 !important;
+    border-radius: 20px !important;
+    padding: 24px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+
+    box-shadow: 0 8px 25px rgba(90, 53, 140, 0.08) !important;
+
+    min-height: 110px !important;
+    box-sizing: border-box !important;
+}
+
+.route-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(90, 53, 140, 0.14) !important;
+}
+
+.route-stat-icon {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+
+    border-radius: 16px !important;
+
+    background: #f0e5ff !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    font-size: 27px !important;
+}
+
+.route-stat-card h3 {
+    margin: 0 0 5px !important;
+
+    font-size: 13px !important;
+
+    color: #8a8095 !important;
+
+    font-weight: 600 !important;
+}
+
+.route-stat-card strong {
+    font-size: 24px !important;
+
+    color: #402663 !important;
+
+    font-weight: 800 !important;
+}
+
+
+/* =====================================================
+   VEHICLE ROUTE BOXES
+===================================================== */
+
+.vehicle-route-card {
+    background: #ffffff !important;
+
+    border: 1px solid #e5d8f5 !important;
+
+    border-radius: 22px !important;
+
+    padding: 25px !important;
+
+    margin-bottom: 22px !important;
+
+    box-shadow: 0 8px 25px rgba(90, 53, 140, 0.08) !important;
+
+    box-sizing: border-box !important;
+}
+
+.vehicle-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    padding-bottom: 20px !important;
+    margin-bottom: 22px !important;
+
+    border-bottom: 1px solid #eee7f5 !important;
+}
+
+.vehicle-title {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+}
+
+.vehicle-icon {
+    width: 50px !important;
+    height: 50px !important;
+
+    min-width: 50px !important;
+
+    border-radius: 14px !important;
+
+    background: #f0e5ff !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    font-size: 24px !important;
+}
+
+.optimized-badge {
+    background: #f0e5ff !important;
+
+    color: #7041b8 !important;
+
+    border: 1px solid #d9c4f5 !important;
+
+    padding: 8px 14px !important;
+
+    border-radius: 20px !important;
+
+    font-size: 13px !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* =====================================================
+   ROUTE FLOW BOXES
+===================================================== */
+
+.route-flow {
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    gap: 10px !important;
+
+    padding: 10px 0 20px !important;
+
+    overflow-x: auto !important;
+}
+
+.route-node {
+    min-width: 100px !important;
+
+    padding: 15px 12px !important;
+
+    background: #faf8fd !important;
+
+    border: 1px solid #e5d8f5 !important;
+
+    border-radius: 15px !important;
+
+    text-align: center !important;
+
+    box-sizing: border-box !important;
+}
+
+.node-circle {
+    width: 42px !important;
+    height: 42px !important;
+
+    margin: 0 auto 8px !important;
+
+    border-radius: 50% !important;
+
+    background: #f0e5ff !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    color: #7041b8 !important;
+
+    font-weight: 800 !important;
+}
+
+.warehouse-node {
+    border-color: #cdb2ef !important;
+
+    background: #f8f3ff !important;
+}
+
+
+/* =====================================================
+   ROUTE DETAILS
+===================================================== */
+
+.route-details {
+    display: grid !important;
+
+    grid-template-columns: repeat(3, 1fr) !important;
+
+    gap: 14px !important;
+
+    margin-top: 5px !important;
+}
+
+.route-details > div {
+    background: #faf8fd !important;
+
+    border: 1px solid #eee7f5 !important;
+
+    border-radius: 14px !important;
+
+    padding: 14px 18px !important;
+
+    text-align: center !important;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .route-summary {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+}
+
+@media (max-width: 750px) {
+
+    .route-summary {
+        grid-template-columns: 1fr !important;
+    }
+
+    .vehicle-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 15px !important;
+    }
+
+    .route-details {
+        grid-template-columns: 1fr !important;
+    }
+
+}

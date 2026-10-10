@@ -1,0 +1,17 @@
+{
+  "depot": {
+    "country": "India",
+    "state": "Andhra Pradesh",
+    "city": "Vijayawada"
+  },
+  "deliveries": [
+    {
+      "id": "D001",
+      "country": "India",
+      "state": "Telangana",
+      "city": "Hyderabad",
+      "demand": 20
+    }
+  ],
+  "vehicle_capacity": 100
+}

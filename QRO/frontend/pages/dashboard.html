@@ -1,0 +1,793 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QuantumRoute | Smart Logistics Dashboard</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <style>
+        :root {
+            --qr-violet: #7950d8;
+            --qr-violet-light: #f3efff;
+            --qr-border: #e7e3ef;
+            --qr-text: #242136;
+            --qr-muted: #777387;
+            --qr-white: #ffffff;
+        }
+
+        body {
+            background: #faf9ff;
+            color: var(--qr-text);
+        }
+
+        .dashboard-network,
+        .dashboard-panel,
+        .dashboard-stat-card,
+        .recommended-route-box {
+            background: var(--qr-white);
+            border: 1px solid var(--qr-border);
+            border-radius: 16px;
+        }
+
+        .dashboard-stat-card {
+            padding: 20px;
+            min-width: 0;
+        }
+
+        .dashboard-stat-card h3 {
+            color: var(--qr-muted);
+            font-size: 14px;
+        }
+
+        .dashboard-stat-card strong {
+            color: var(--qr-violet);
+            font-size: 28px;
+        }
+
+        .dashboard-container {
+            width: min(1200px, 94%);
+            margin: 0 auto;
+        }
+
+        .dashboard-hero {
+            padding: 28px 0 18px;
+        }
+
+        .dashboard-network,
+        .dashboard-panel {
+            padding: 22px;
+            margin: 20px 0;
+        }
+
+        .dashboard-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .dashboard-section-header h2,
+        .dashboard-panel h2 {
+            margin-top: 0;
+        }
+
+        .dashboard-section-header p {
+            color: var(--qr-muted);
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .dashboard-panels-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .qr-status-pill {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 30px;
+            background: var(--qr-violet-light);
+            color: var(--qr-violet);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        #backendStatus.offline {
+            background: #fff0f0;
+            color: #b42318;
+        }
+
+        /* Vehicle fleet */
+
+        .vehicle-fleet {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(170px, 1fr)
+            );
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .vehicle-card {
+            min-width: 0;
+            padding: 16px;
+            background: #fff;
+            border: 1px solid var(--qr-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: border-color 0.2s ease,
+                        background 0.2s ease;
+        }
+
+        .vehicle-card:hover,
+        .vehicle-card.selected,
+        .vehicle-card:focus-visible {
+            border-color: var(--qr-violet);
+            background: var(--qr-violet-light);
+            outline: none;
+        }
+
+        .vehicle-card h3 {
+            color: var(--qr-violet);
+            margin: 0 0 10px;
+        }
+
+        .vehicle-card p {
+            margin: 7px 0;
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .vehicle-status {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 20px;
+            background: #e7f8ed;
+            color: #187443;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .vehicle-status.unavailable {
+            background: #fff0f0;
+            color: #b42318;
+        }
+
+        .vehicle-location {
+            color: var(--qr-muted);
+        }
+
+        /* Delivery route */
+
+        .delivery-network-route {
+            display: flex;
+            align-items: stretch;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 18px 0;
+        }
+
+        .delivery-network-stop {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            flex: 1 1 180px;
+            min-width: 0;
+            padding: 15px;
+            background: var(--qr-violet-light);
+            border: 1px solid #e2d7ff;
+            border-radius: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .delivery-network-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 30px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--qr-violet);
+            color: white;
+            font-weight: 700;
+        }
+
+        .delivery-network-stop strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .delivery-network-stop p {
+            color: var(--qr-muted);
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .delivery-network-arrow {
+            align-self: center;
+            color: var(--qr-violet);
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* Map */
+
+        .qr-map-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+
+        .qr-map-toolbar select {
+            max-width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--qr-border);
+            border-radius: 8px;
+            background: white;
+            color: var(--qr-text);
+        }
+
+        #qrLiveMap {
+            width: 100%;
+            height: 360px;
+            min-height: 280px;
+            border-radius: 12px;
+            border: 1px solid var(--qr-border);
+            z-index: 1;
+        }
+
+        .qr-map-status {
+            color: var(--qr-muted);
+            font-size: 13px;
+            margin: 12px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .recommended-route-box {
+            padding: 18px;
+            margin-top: 18px;
+            background: #faf8ff;
+        }
+
+        .recommended-route-box h3 {
+            margin-top: 0;
+        }
+
+        #qrRecommendedRoute {
+            overflow-wrap: anywhere;
+            line-height: 1.8;
+        }
+
+        #qrRecommendedDistance,
+        #dashboardOptimizedDistance {
+            color: var(--qr-violet);
+            font-weight: 700;
+        }
+
+        #qrDynamicError,
+        #errorMessage,
+        #optimizationError {
+            overflow-wrap: anywhere;
+        }
+
+        .dashboard-footer {
+            text-align: center;
+            padding: 24px 12px;
+            color: var(--qr-muted);
+        }
+
+        @media (max-width: 850px) {
+            .dashboard-stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .dashboard-panels-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .dashboard-network,
+            .dashboard-panel {
+                padding: 15px;
+            }
+
+            .dashboard-stats {
+                gap: 10px;
+            }
+
+            .dashboard-stat-card {
+                padding: 13px;
+            }
+
+            .dashboard-stat-card strong {
+                font-size: 23px;
+            }
+
+            #qrLiveMap {
+                height: 300px;
+            }
+
+            .delivery-network-stop {
+                flex-basis: 100%;
+            }
+
+            .delivery-network-arrow {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="navbar-brand">
+            <a href="../index.html">
+                <strong>QuantumRoute</strong>
+                <span>Smart Logistics</span>
+            </a>
+        </div>
+
+        <nav class="navbar-links" aria-label="Main navigation">
+            <a href="../index.html">Home</a>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="routes.html">Routes</a>
+            <a href="results.html">Results</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-container">
+
+        <section class="dashboard-hero">
+            <p class="qr-status-pill">
+                VNQFF-08 · Quantum Optimization
+            </p>
+
+            <h1>Smart Logistics Dashboard</h1>
+
+            <p>
+                Optimize last-mile delivery routes using classical and
+                quantum-enhanced optimization.
+            </p>
+        </section>
+
+        <!-- Dashboard statistics -->
+
+        <section
+            class="dashboard-stats"
+            aria-label="Logistics statistics"
+        >
+
+            <article class="dashboard-stat-card">
+                <h3>Active Vehicles</h3>
+                <strong id="activeVehicles">--</strong>
+                <p>Active fleet vehicles</p>
+            </article>
+
+            <article class="dashboard-stat-card">
+                <h3>Today's Deliveries</h3>
+                <strong id="todayDeliveries">24</strong>
+            </article>
+
+            <article class="dashboard-stat-card">
+                <h3>Optimized Distance</h3>
+                <strong id="dashboardOptimizedDistance">-- km</strong>
+            </article>
+
+            <article class="dashboard-stat-card">
+                <h3>Estimated Savings</h3>
+                <strong id="estimatedSavings">₹530</strong>
+            </article>
+
+        </section>
+
+        <!-- Vehicle fleet -->
+
+        <section class="dashboard-panel">
+
+            <div class="dashboard-section-header">
+                <div>
+                    <h2>Vehicle Fleet</h2>
+                    <p>
+                        Select a vehicle to view its available information.
+                    </p>
+                </div>
+
+                <span
+                    id="vehicleFleetStatus"
+                    class="qr-status-pill"
+                >
+                    Loading vehicles...
+                </span>
+            </div>
+
+            <div
+                id="vehicleFleet"
+                class="vehicle-fleet"
+                aria-live="polite"
+            >
+                <p>Loading vehicle information...</p>
+            </div>
+
+            <div class="qr-map-toolbar">
+                <label for="selectedVehicle">
+                    Selected vehicle:
+                </label>
+
+                <select id="selectedVehicle">
+                    <option value="">All vehicles</option>
+                </select>
+            </div>
+
+            <p class="qr-map-status" id="selectedVehicleStatus">
+                Select a vehicle to view its status.
+            </p>
+
+        </section>
+
+        <!-- Current delivery network -->
+
+        <section class="dashboard-network">
+
+            <div class="dashboard-section-header">
+                <div>
+                    <h2>Current Delivery Network</h2>
+                    <p>
+                        Route generated from your latest optimization.
+                    </p>
+                </div>
+
+                <span
+                    id="deliveryRouteStatus"
+                    class="qr-status-pill"
+                >
+                    Waiting for route
+                </span>
+            </div>
+
+            <div
+                id="deliveryNetworkRoute"
+                class="delivery-network-route"
+                aria-live="polite"
+            >
+                <p>
+                    Run route optimization to display your delivery stops.
+                </p>
+            </div>
+
+            <div class="qr-map-toolbar">
+                <label for="qrMapRouteType">
+                    Compare route:
+                </label>
+
+                <select id="qrMapRouteType">
+                    <option value="quantum">Quantum Route</option>
+                    <option value="classical">Classical Route</option>
+                </select>
+            </div>
+
+            <div
+                id="qrLiveMap"
+                role="application"
+                aria-label="Delivery route map"
+            ></div>
+
+            <p
+                id="qrMapStatus"
+                class="qr-map-status"
+                aria-live="polite"
+            >
+                Initializing map...
+            </p>
+
+            <div class="recommended-route-box">
+                <h3>Selected Route</h3>
+
+                <p id="qrRecommendedRoute">
+                    Optimize a route to see the result.
+                </p>
+
+                <p>
+                    Distance:
+                    <span id="qrRecommendedDistance">-- km</span>
+                </p>
+            </div>
+
+        </section>
+
+        <!-- Optimization details -->
+
+        <div class="dashboard-panels-grid">
+
+            <section class="dashboard-panel">
+                <h2>Optimization Engine</h2>
+
+                <p>
+                    Backend status:
+                    <span
+                        id="backendStatus"
+                        class="qr-status-pill"
+                    >
+                        Checking...
+                    </span>
+                </p>
+
+                <p>
+                    Method:
+                    <strong id="optimizationMethod">QAOA</strong>
+                </p>
+
+                <p>
+                    Qubits used:
+                    <strong id="qrPerformanceQubits">--</strong>
+                </p>
+
+                <p>
+                    Quantum probability:
+                    <strong id="quantumProbability">--</strong>
+                </p>
+            </section>
+
+            <section class="dashboard-panel">
+                <h2>Route Performance</h2>
+
+                <p>
+                    Optimized distance:
+                    <strong id="qrPerformanceDistance">-- km</strong>
+                </p>
+
+                <p>
+                    Total delivery demand:
+                    <strong id="qrPerformanceDemand">-- units</strong>
+                </p>
+
+                <p>
+                    Quantum route:
+                    <strong id="quantumRoute">--</strong>
+                </p>
+
+                <p>
+                    Classical route:
+                    <strong id="classicalRoute">--</strong>
+                </p>
+
+                <p>
+                    Distance difference:
+                    <strong id="distanceDifference">--</strong>
+                </p>
+            </section>
+
+        </div>
+
+        <section id="errorMessage" hidden role="alert"></section>
+        <section id="optimizationError" hidden role="alert"></section>
+
+        <section class="dashboard-panel">
+            <h2>Optimize a New Route</h2>
+
+            <p>
+                Enter delivery locations and run the optimizer to refresh
+                the network and map.
+            </p>
+
+            <a href="routes.html" class="btn btn-primary">
+                Go to Route Optimizer
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="dashboard-footer">
+        <p>QuantumRoute · Smart Logistics · VNQFF-08</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../js/app.js"></script>
+
+    <script>
+        /*
+         * Fleet UI only.
+         * Uses the existing /api/vehicles endpoint.
+         * Does not change the optimizer or route algorithm.
+         */
+
+        (function () {
+            const fleet = document.getElementById("vehicleFleet");
+            const selector = document.getElementById("selectedVehicle");
+            const activeCount = document.getElementById("activeVehicles");
+            const fleetStatus = document.getElementById("vehicleFleetStatus");
+            const selectedStatus = document.getElementById("selectedVehicleStatus");
+
+            if (!fleet || !selector) return;
+
+            let vehicles = [];
+
+            function escapeText(value) {
+                return String(value ?? "").replace(/[&<>"']/g, char => ({
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                })[char]);
+            }
+
+            function isActive(vehicle) {
+                return vehicle.status === "active" &&
+                    vehicle.available === true;
+            }
+
+            function renderFleet() {
+                fleet.innerHTML = vehicles.map(vehicle => {
+                    const active = isActive(vehicle);
+                    const hasCoordinates =
+                        vehicle.latitude !== null &&
+                        vehicle.longitude !== null &&
+                        Number.isFinite(Number(vehicle.latitude)) &&
+                        Number.isFinite(Number(vehicle.longitude));
+
+                    return `
+                        <article
+                            class="vehicle-card"
+                            data-vehicle-id="${escapeText(vehicle.id)}"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Select ${escapeText(vehicle.name)}"
+                        >
+                            <h3>🚚 ${escapeText(vehicle.name)}</h3>
+                            <p>ID: ${escapeText(vehicle.id)}</p>
+                            <p>Capacity: ${escapeText(vehicle.capacity)}</p>
+                            <span class="vehicle-status ${active ? "" : "unavailable"}">
+                                ${active ? "Active" : "Unavailable"}
+                            </span>
+                            <p class="vehicle-location">
+                                ${hasCoordinates
+                                    ? "Location coordinates available"
+                                    : "Location not configured"}
+                            </p>
+                        </article>
+                    `;
+                }).join("");
+
+                fleet.querySelectorAll(".vehicle-card").forEach(card => {
+                    function selectVehicle() {
+                        selector.value = card.dataset.vehicleId;
+                        updateSelection();
+                    }
+
+                    card.addEventListener("click", selectVehicle);
+
+                    card.addEventListener("keydown", event => {
+                        if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            selectVehicle();
+                        }
+                    });
+                });
+
+                updateSelection();
+            }
+
+            function updateSelection() {
+                const selectedId = selector.value;
+
+                fleet.querySelectorAll(".vehicle-card").forEach(card => {
+                    card.classList.toggle(
+                        "selected",
+                        card.dataset.vehicleId === selectedId
+                    );
+                });
+
+                const vehicle = vehicles.find(item => item.id === selectedId);
+
+                if (!vehicle) {
+                    selectedStatus.textContent =
+                        "Showing all registered vehicles.";
+
+                    return;
+                }
+
+                const hasCoordinates =
+                    vehicle.latitude !== null &&
+                    vehicle.longitude !== null &&
+                    Number.isFinite(Number(vehicle.latitude)) &&
+                    Number.isFinite(Number(vehicle.longitude));
+
+                selectedStatus.textContent = hasCoordinates
+                    ? `${vehicle.name}: location coordinates are available.`
+                    : `${vehicle.name}: no location coordinates yet, so its marker cannot be positioned.`;
+
+                /*
+                 * Do not invent vehicle locations.
+                 * The existing map continues displaying the optimized delivery route.
+                 * Actual vehicle marker rendering needs real coordinates.
+                 */
+            }
+
+            async function loadFleet() {
+                try {
+                    fleetStatus.textContent = "Loading...";
+
+                    const baseUrl =
+                        window.QR_API_BASE_URL || "http://127.0.0.1:5000";
+
+                    const response = await fetch(`${baseUrl}/api/vehicles`);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    if (!data.success || !Array.isArray(data.vehicles)) {
+                        throw new Error("Invalid vehicle API response");
+                    }
+
+                    vehicles = data.vehicles;
+
+                    activeCount.textContent =
+                        vehicles.filter(isActive).length;
+
+                    fleetStatus.textContent =
+                        `${vehicles.filter(isActive).length} active / ${vehicles.length} total`;
+
+                    const previousValue = selector.value;
+
+                    selector.innerHTML =
+                        '<option value="">All vehicles</option>' +
+                        vehicles.map(vehicle => `
+                            <option
+                                value="${escapeText(vehicle.id)}"
+                                ${vehicle.available ? "" : "disabled"}
+                            >
+                                ${escapeText(vehicle.name)}
+                            </option>
+                        `).join("");
+
+                    if (vehicles.some(vehicle =>
+                        vehicle.id === previousValue && vehicle.available
+                    )) {
+                        selector.value = previousValue;
+                    }
+
+                    renderFleet();
+
+                } catch (error) {
+                    console.error("Vehicle fleet loading failed:", error);
+
+                    fleetStatus.textContent = "Unavailable";
+                    fleet.textContent =
+                        "Unable to load vehicles. Check whether the backend is running.";
+                }
+            }
+
+            selector.addEventListener("change", updateSelection);
+
+            loadFleet();
+        })();
+    </script>
+
+</body>
+</html>
